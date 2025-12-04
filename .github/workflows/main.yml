@@ -10,7 +10,7 @@ jobs:
       - name: 'Before'
         run: ls
 
-      
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: 'After'
