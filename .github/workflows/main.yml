@@ -1,17 +1,20 @@
+name: Docker Login Workflow
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  build:
+  docker-login:
     runs-on: ubuntu-latest
-  steps:
-      - name: 'Before'
-        run: ls
-
-      
+    steps:
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: 'After'
+      - name: Docker Login
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: List files after login
         run: ls
